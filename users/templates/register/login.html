@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellcome to sing-up page</title>
+</head>
+<body>
+    <p>Wellcome to sing-in page</p>
+   <div>
+     <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Enter your Username" required autocomplete="off">
+    <input type="password" name="password" placeholder="Enter your password" required autocomplete="new-password">
+    <button type="submit">Sign In</button>
+</form>
+   </div>
+</body>
+</html>
