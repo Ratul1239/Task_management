@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django import forms
 import re
+from django.contrib.auth.forms import AuthenticationForm
 class register_form(UserCreationForm):
     class Meta:
         model = User
@@ -55,3 +56,17 @@ class userregister_form(forms.ModelForm):
         if password1 !=comfirm_password:
             raise forms.ValidationError('password do not match')
         return cleaned_data
+    
+class MyAuthForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # username এবং password input-এ attrs যোগ করছি
+        self.fields['username'].widget.attrs.update({
+            'autocomplete': 'off',    # বা 'username'
+            'autofocus': True,
+            'placeholder': 'Username'
+        })
+        self.fields['password'].widget.attrs.update({
+            'autocomplete': 'new-password',  # ব্যবহার করুন 'current-password' বা 'new-password' ব্রাউজার আচরণ অনুযায়ী
+            'placeholder': 'Password'
+        })

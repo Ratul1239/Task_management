@@ -8,10 +8,14 @@
 <body>
     <p>Wellcome to sing-in page</p>
    <div>
+    {% if messages %}
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
+    {% endif %}
      <form method="POST">
     {% csrf_token %}
-    <input type="text" name="username" placeholder="Enter your Username" required autocomplete="off">
-    <input type="password" name="password" placeholder="Enter your password" required autocomplete="new-password">
+    {{form}}
     <button type="submit">Sign In</button>
 </form>
    </div>
